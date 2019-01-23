@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.LoginFragment">
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.LoginActivity">
+
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="@dimen/logo_dimen_100"
+            android:layout_height="@dimen/logo_dimen_100"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_48"
+            android:src="@drawable/logo" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phone_text_layout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo_image"
+            android:layout_marginStart="@dimen/dimen_8"
+            app:counterMaxLength="11"
+            android:layout_marginTop="@dimen/dimen_16"
+            app:counterEnabled="true"
+            android:layout_marginEnd="@dimen/dimen_8"
+            app:hintEnabled="false">
+
+            <EditText
+                android:id="@+id/phone_number_edit"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:hint="@string/phone_number_hint"
+                android:inputType="phone" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password_text_layout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_text_layout"
+            app:hintEnabled="false"
+            app:counterMaxLength="32"
+            app:counterEnabled="true"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/password_edit"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/remember_me_checked_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_text_layout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:checked="true"
+            android:text="@string/remember_me_checked" />
+
+        <TextView
+            android:id="@+id/forget_password_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_text_layout"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:drawableEnd="@drawable/ic_warning_black_24dp"
+            android:drawablePadding="@dimen/dimen_8"
+            android:drawableTint="#ffe500"
+            android:text="@string/forget_your_password"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_16" />
+
+        <Button
+            android:id="@+id/login_button"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/remember_me_checked_box"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_32"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:background="@color/colorGreen"
+            android:text="@string/login"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/new_user_button"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/login_button"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:background="@color/colorBlue"
+            android:text="@string/new_user"
+            android:textColor="@android:color/white" />
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

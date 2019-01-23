@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="TextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
+        <item name="android:layout_marginStart">@dimen/dimen_8</item>
+        <item name="android:layout_marginEnd">@dimen/dimen_8</item>
+        <item name="android:layout_marginTop">@dimen/dimen_8</item>
+        <item name="android:elevation">@dimen/dimen_4</item>
+        <item name="android:background">@drawable/edit_text_background</item>
+
+    </style>
+</resources>

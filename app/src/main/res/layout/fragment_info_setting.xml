@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.InfoSettingFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false"
+            android:id="@+id/name_edit_text"
+            style="@style/TextInputLayoutStyle"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/EditTextStyle"
+                android:hint="أحمد محمد"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false"
+            android:id="@+id/email_edit_text"
+            style="@style/TextInputLayoutStyle"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/EditTextStyle"
+                android:hint="username@example.com"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false"
+            android:id="@+id/birth_day_edit_text"
+            style="@style/TextInputLayoutStyle"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/EditTextStyle"
+                android:inputType="date"
+                android:gravity="end|center"
+                android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                android:drawableTint="@color/colorBlueGray900"
+                android:hint="27/1/1990"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            style="@style/TextInputLayoutStyle"
+            android:id="@+id/blood_type_spinner"
+            android:hint="O+"/>
+
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false"
+            android:id="@+id/last_donate_data_edit_text"
+            style="@style/TextInputLayoutStyle"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/EditTextStyle"
+                android:gravity="center|end"
+                android:drawableTint="@color/colorBlueGray900"
+                android:drawableStart="@drawable/ic_date_range_black_24dp"
+                android:hint="20/9/2018"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="الدقهلية"
+            style="@style/TextInputLayoutStyle"/>
+
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="المنصورة"
+            style="@style/TextInputLayoutStyle"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false"
+            android:id="@+id/password_edit_text"
+            style="@style/TextInputLayoutStyle"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/EditTextStyle"
+                android:inputType="textPassword"
+                android:gravity="center|end"
+                android:hint="******"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false"
+            android:id="@+id/repeat_password_edit_text"
+            style="@style/TextInputLayoutStyle"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/EditTextStyle"
+                android:gravity="center|end"
+                android:hint="******"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_8"
+            android:background="@color/colorBlueGray900"
+            android:text="تعديل البيانات"
+            android:textColor="@android:color/white"
+            />
+
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

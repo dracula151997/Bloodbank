@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/splash_background"
+    tools:context=".ui.fragment.SMSFragment">
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="@dimen/logo_dimen_100"
+        android:layout_height="@dimen/logo_dimen_100"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_48"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo_image"
+        android:layout_marginTop="@dimen/dimen_48"
+        android:gravity="center"
+        android:text="@string/code_for_password"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_24"
+
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/verify_code_text_layout"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text"
+        app:hintEnabled="false"
+        app:counterEnabled="true"
+        app:counterMaxLength="4"
+        android:layout_marginEnd="8dp">
+
+        <EditText
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50"
+            android:id="@+id/verify_code_edit"
+            android:hint="@string/code"
+            android:paddingStart="@dimen/dimen_16"
+            android:paddingEnd="@dimen/dimen_16" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/new_password_text_layout"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
+        app:counterMaxLength="32"
+        app:counterEnabled="true"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@id/verify_code_text_layout">
+
+        <EditText
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50"
+            android:id="@+id/new_password_edit"
+            android:inputType="textPassword"
+            android:hint="@string/new_password"
+            android:paddingEnd="@dimen/dimen_16" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/repeat_password_text_layout"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:counterMaxLength="32"
+        app:hintEnabled="false"
+        app:counterEnabled="true"
+
+        app:passwordToggleEnabled="true"
+        android:layout_below="@id/new_password_text_layout"
+        android:layout_marginEnd="8dp">
+
+        <EditText
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:id="@+id/repeat_password_edit"
+            android:inputType="textPassword"
+            android:layout_height="50dp"
+            android:hint="@string/repeat_password_hint"
+            android:paddingEnd="@dimen/dimen_16" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/change_password_button"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/repeat_password_text_layout"
+        android:layout_marginTop="@dimen/dimen_32"
+        android:background="@color/colorGreen"
+        android:text="@string/change_password"
+        android:textColor="@android:color/white" />
+
+
+</RelativeLayout>

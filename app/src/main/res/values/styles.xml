@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
+        <item name="android:layout_marginStart">@dimen/dimen_8</item>
+        <item name="android:layout_marginEnd">@dimen/dimen_8</item>
+        <item name="android:layout_marginTop">@dimen/dimen_2</item>
+        <item name="android:background">@drawable/edit_text_background</item>
+
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:paddingStart">@dimen/dimen_8</item>
+        <item name="android:paddingEnd">@dimen/dimen_8</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+
+    <style name="ButtonStyle" parent="">
+        <item name="android:textSize">@dimen/dimen_16</item>
+        <item name="android:layout_marginStart">@dimen/dimen_8</item>
+        <item name="android:layout_marginEnd">@dimen/dimen_8</item>
+        <item name="android:foreground">?selectableItemBackground</item>
+    </style>
+
+</resources>

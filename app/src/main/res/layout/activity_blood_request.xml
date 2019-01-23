@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background"
+    android:orientation="vertical"
+    tools:context=".ui.activity.BloodRequestActivity">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false">
+
+            <EditText
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/name_edit_text"
+                android:hint="@string/name_edit" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false">
+
+            <EditText
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/age_edit_text"
+                android:hint="@string/age" />
+        </android.support.design.widget.TextInputLayout>
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/blood_type_spinner"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_48"
+            android:hint="@string/blood_type" />
+
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false">
+
+            <EditText
+                style="@style/EditTextStyle"
+                android:id="@+id/bags_number_edit_text"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/num" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40">
+
+            <EditText
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:id="@+id/hospital_name_edit_text"
+                android:layout_height="match_parent"
+                android:hint="@string/hospital_name" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                app:hintEnabled="false">
+
+                <EditText
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:id="@+id/hospital_address_edit_text"
+
+                    android:layout_height="match_parent"
+                    android:hint="@string/hospital_address"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_weight="0.5"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:id="@+id/my_location_button"
+                android:background="@android:color/white"
+                android:drawableEnd="@drawable/ic_location_on_black_24dp"
+                android:drawableTint="@color/colorBlueGray900"
+                android:src="@drawable/ic_location_on_black_24dp"
+                android:text="@string/location" />
+
+
+        </LinearLayout>
+
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/state_spinner"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            android:hint="@string/state" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/city_spinner"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            android:hint="@string/city" />
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false">
+
+            <EditText
+                style="@style/EditTextStyle"
+                android:id="@+id/phone_number_edit_text"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/phone_number_hint" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_100"
+            app:hintEnabled="false">
+
+            <EditText
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:id="@+id/comments_edit_text"
+
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:hint="@string/comments" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/colorBlueGray900"
+            android:text="@string/request_send"
+            android:id="@+id/send_button"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+
+</ScrollView>

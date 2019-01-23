@@ -1,0 +1,119 @@
+<resources>
+    <string name="app_name">BloodBank</string>
+    <string name="skip">تخطى</string>
+    <string name="phone_number_hint">الجوال</string>
+    <string name="password_hint">كلمة المرور</string>
+    <string name="remember_me_checked">تذكرنى</string>
+    <string name="forget_your_password">هل نسيت كلمة المرور؟</string>
+    <string name="login">دخول</string>
+    <string name="new_user">انشاء حساب جديد</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_edit">الإسم</string>
+    <string name="email">البريد الإلكترونى</string>
+    <string name="birth_day">تاريخ الميلاد</string>
+    <string name="blood_type">فصيلة الدم</string>
+    <string name="last_donate_data">أخر تاريخ التبرع</string>
+    <string name="city">المدينة</string>
+    <string name="state">المحافظة</string>
+    <string name="repeat_password_hint">تأكيد كلمة المرور</string>
+    <string name="register">تسجيل</string>
+    <string name="forget_pass">نسيت كلمة المرور</string>
+    <string name="send_code">إرسال</string>
+    <string name="code_for_password">كود تغيير كلمة المرور</string>
+    <string name="code">كود التحقق</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="my_info">معلوماتى</string>
+    <string name="notification_settings">اعدادات الإشعارات</string>
+    <string name="favorite">المفضلة</string>
+    <string name="home">الرئيسية</string>
+    <string name="usage_help">تعليمات الإستخدام</string>
+    <string name="contact">تواصل معنا</string>
+    <string name="about_app">عن التطبيق</string>
+    <string name="rate_app">تقييم التطبيق على المتجر</string>
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="notification">الإشعارات</string>
+    <string name="search">ادخل كلمة للبحث هنا...</string>
+    <string name="age">العمر</string>
+    <string name="num">عدد الأكياس</string>
+    <string name="hospital_name">اسم المستشفى</string>
+    <string name="hospital_address">عنوان المستشفى</string>
+    <string name="location">موقعى</string>
+    <string name="comments">ملاحظات</string>
+    <string name="request_send">إرسال الطلب</string>
+    <string name="blood_types">فصائل الدم</string>
+    <string name="states">المحافظات</string>
+    <string name="save">حفظ</string>
+    <string name="choose_blood_type">أختار فصيلة الدم</string>
+    <string name="choose_city">اختار المدينة</string>
+
+    <array name="spinner_enteries">
+        <item>الوقاية</item>
+    </array>
+
+    <array name="images_array">
+        <item>@drawable/ic_info</item>
+        <item>@drawable/ic_info2</item>
+    </array>
+
+    <array name="days">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+
+    </array>
+
+    <array name="months">
+        <item>يناير</item>
+        <item>فبراير</item>
+        <item>مارس</item>
+        <item>إبريل</item>
+        <item>مايو</item>
+        <item>يونيو</item>
+        <item>يوليو</item>
+        <item>أغسطس</item>
+        <item>سبتمبر</item>
+        <item>أكتوبر</item>
+        <item>نوفمبر</item>
+        <item>ديسمبر</item>
+
+    </array>
+    <string name="title_activity_maps">Map</string>
+    <string name="message_title">عنوان الرسالة</string>
+    <string name="message">نص الرسالة</string>
+    <string name="title">Title</string>
+    <string name="fake_name">الإسم: أحمد محمد</string>
+    <string name="fake_age">العمر: 21 سنة</string>
+    <string name="fake_blood_type">فصيلة الدم: A+</string>
+    <string name="fake_blood_num">عدد الأكياس المطلوبة: 3 أكياس</string>
+    <string name="fake_hospital_name">المستشفى: الخير التخصصى</string>
+    <string name="fake_hospital_address">عنوان المستشفى: 21 شارع عبد العزيز بجوار المرور</string>
+    <string name="fake_phone_number">رقم الجوال: 01019177978</string>
+    <string name="fake_details">التفاصيل</string>
+    <string name="call">أتصال</string>
+    <string name="article_title">Title</string>
+    <string name="fake_email">البريد الإلكترونى: name@name.com</string>
+    <string name="contact_text">تواصل معنا</string>
+    <string name="fake_city">المدينة: المنصورة</string>
+    <string name="details">التفاصيل</string>
+    <string name="password_error">at least 6 characters</string>
+    <string name="phone_number_error">phone number must be 11 digits.</string>
+</resources>

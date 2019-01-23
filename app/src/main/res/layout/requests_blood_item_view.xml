@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+
+    android:elevation="@dimen/elevation"
+    android:padding="@dimen/dimen_8">
+
+    <TextView
+        android:id="@+id/blood_type_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/oval_gray_drawable"
+        android:padding="@dimen/dimen_8"
+        android:text="B+"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_50"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_4"
+        android:layout_toStartOf="@id/blood_type_text"
+        android:layout_toEndOf="@id/lay_2"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_16"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/patient_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/fake_name" />
+
+        <TextView
+            android:id="@+id/hospital_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="عنوان المستشفى: القصر العينى" />
+
+        <TextView
+            android:id="@+id/city_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/fake_city" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@id/lay_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/detail_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorGray300"
+            android:text="@string/details" />
+
+        <Button
+            android:id="@+id/contact_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorGreen"
+            android:drawableStart="@drawable/ic_phone_black_24dp"
+            android:drawableTint="@android:color/white"
+            android:text="@string/contact"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
