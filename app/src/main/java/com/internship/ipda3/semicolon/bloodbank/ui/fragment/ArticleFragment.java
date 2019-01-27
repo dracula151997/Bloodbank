@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.internship.ipda3.semicolon.bloodbank.EndlessRecyclerOnScrollListener;
 import com.internship.ipda3.semicolon.bloodbank.R;
 import com.internship.ipda3.semicolon.bloodbank.adapter.PostRecyclerAdapter;
 import com.internship.ipda3.semicolon.bloodbank.model.posts.post.Posts;
 import com.internship.ipda3.semicolon.bloodbank.model.posts.post.PostsData;
+import com.internship.ipda3.semicolon.bloodbank.model.posts.post.PostsDatum;
 import com.internship.ipda3.semicolon.bloodbank.rest.ApiEndPoint;
 
 import java.util.ArrayList;
@@ -35,6 +37,8 @@ import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
 public class ArticleFragment extends Fragment {
     private static final String API_TOKEN = "Zz9HuAjCY4kw2Ma2XaA6x7T5O3UODws1UakXI9vgFVSoY3xUXYOarHX2VH27";
 
+    int max;
+
 
     @BindView(R.id.article_recycler_view)
     RecyclerView articleRecyclerView;
@@ -54,22 +58,24 @@ public class ArticleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_article, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        setupRecyclerView();
-        loadPosts(1);
+
         mEndPoints = getClient().create(ApiEndPoint.class);
+        setupRecyclerView();
+
+
+
+        loadPosts(1);
         return view;
     }
 
     private void loadPosts(int page) {
-       /* mEndPoints.getPosts(API_TOKEN, page)
+        mEndPoints.getPosts(API_TOKEN, page)
                 .enqueue(new Callback<Posts>() {
                     @Override
                     public void onResponse(Call<Posts> call, Response<Posts> response) {
-                        verbose("onPostsResponse: success");
-                        PostsData data = response.body().getData();
-                        List<PostsData> postsData = new ArrayList<>();
-                        postsData.add(data);
-                        articleRecyclerView.setAdapter(new PostRecyclerAdapter(postsData, getContext()));
+                        verbose("onPostsResponse: response raw: " + response.raw());
+                        List<PostsDatum> data = response.body().getData().getData();
+                        articleRecyclerView.setAdapter(new PostRecyclerAdapter(data, getContext()));
                     }
 
                     @Override
@@ -77,7 +83,7 @@ public class ArticleFragment extends Fragment {
                         error("onPostsResponse: failure: " + t.getMessage());
 
                     }
-                });*/
+                });
     }
 
 
@@ -85,6 +91,19 @@ public class ArticleFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         articleRecyclerView.setHasFixedSize(true);
         articleRecyclerView.setLayoutManager(manager);
+
+        articleRecyclerView.setOnScrollListener(new EndlessRecyclerOnScrollListener(manager) {
+            @Override
+            public void onLoadMore(int current_page) {
+                if (current_page <= max){
+                    max = current_page;
+                    loadPosts(current_page);
+
+                }
+
+            }
+        });
+
     }
 
     @Override

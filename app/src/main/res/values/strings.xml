@@ -96,6 +96,19 @@
         <item>ديسمبر</item>
 
     </array>
+    
+    
+    <array name="blood_types">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+
+    </array>
     <string name="title_activity_maps">Map</string>
     <string name="message_title">عنوان الرسالة</string>
     <string name="message">نص الرسالة</string>
@@ -116,4 +129,13 @@
     <string name="details">التفاصيل</string>
     <string name="password_error">at least 6 characters</string>
     <string name="phone_number_error">phone number must be 11 digits.</string>
+    <string name="country">المحافظات</string>
+    <string name="cities">المدينة</string>
+    <string name="update_info">تعديل البيانات</string>
+    <string name="user_name_error">username must contains characters from a-z and symbols.</string>
+    <string name="email_error">Email doesn\'t valid.</string>
+    <string name="password_confirm_error">Password doesn\'t confirm.</string>
+    <string name="last_donation_date_error">Enter the last donate date.</string>
+    <string name="birth_date_error">Enter the birth date.</string>
+    <string name="required">Required</string>
 </resources>

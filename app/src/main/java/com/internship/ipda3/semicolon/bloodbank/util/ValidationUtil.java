@@ -39,4 +39,8 @@ public class ValidationUtil {
 
     }
 
+    public static boolean isEmpty(String text){
+        return TextUtils.isEmpty(text);
+    }
+
 }

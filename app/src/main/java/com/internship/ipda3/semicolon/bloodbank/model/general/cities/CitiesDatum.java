@@ -14,7 +14,7 @@ public class CitiesDatum {
     @SerializedName("governorate_id")
     private String mGovernorateId;
     @SerializedName("id")
-    private Long mId;
+    private Integer mId;
     @SerializedName("name")
     private String mName;
     @SerializedName("updated_at")
@@ -44,11 +44,11 @@ public class CitiesDatum {
         mGovernorateId = governorateId;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return mId;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         mId = id;
     }
 

@@ -91,6 +91,8 @@ public interface ApiEndPoint {
                                       String donation_last_date,
                               @Field("password")
                                       String password,
+                              @Field("password_confirmation")
+                                      String password_confirmation,
                               @Field("blood_type")
                                       String blood_type,
                               @Field("api_token")
@@ -167,7 +169,7 @@ public interface ApiEndPoint {
     Call<DonationDetails> getDonationDetails(@Query("api_token")
                                                      String api_token,
                                              @Query("donation_id")
-                                                     Integer donation_id);
+                                                     String donation_id);
 
     @GET("posts")
     @Headers("Accept: application/json")

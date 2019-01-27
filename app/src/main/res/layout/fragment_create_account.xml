@@ -45,53 +45,35 @@
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
-            style="@style/TextInputLayoutStyle"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            android:layout_margin="@dimen/dimen_8"
-            android:orientation="horizontal">
+            style="@style/TextInputLayoutStyle"
+            app:hintEnabled="false"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:layout_height="@dimen/dimen_50">
 
-
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/year_spinner"
-                android:layout_width="0dp"
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:id="@+id/birth_day_edit_text"
+                android:drawableStart="@drawable/ic_date_range_black_24dp"
+                android:hint="@string/birth_day"
+                style="@style/EditTextStyle" />
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/month_spinner"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:gravity="center" />
-
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/day_spinners"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/dimen_8"
-                android:layout_weight="1"
-                android:gravity="center" />
+        </android.support.design.widget.TextInputLayout>
 
 
-        </LinearLayout>
-
-
-        <com.jaredrummler.materialspinner.MaterialSpinner
+        <Spinner
             android:id="@+id/blood_type_spinner"
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50"
-            android:layout_below="@id/birth_day_edit_text"
             android:hint="@string/blood_type" />
 
         <android.support.design.widget.TextInputLayout
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50"
-            android:layout_below="@id/blood_type_spinner"
             android:background="@drawable/edit_text_background"
             app:hintEnabled="false">
 
@@ -100,33 +82,49 @@
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:drawableStart="@drawable/ic_date_range_black_24dp"
                 android:hint="@string/last_donate_data"
                 android:inputType="date" />
         </android.support.design.widget.TextInputLayout>
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/state_spinner"
-            style="@style/TextInputLayoutStyle"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/last_donate_data_edit"
-            android:hint="@string/state" />
+            android:layout_height="@dimen/dimen_50"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:elevation="@dimen/dimen_1"
+            android:background="@android:color/white">
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/city_spinner"
-            style="@style/TextInputLayoutStyle"
+            <Spinner
+                android:id="@+id/state_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/state_spinner"
-            android:hint="@string/city" />
+            android:layout_height="@dimen/dimen_50"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:elevation="@dimen/dimen_1"
+            android:background="@android:color/white">
+
+            <Spinner
+                android:id="@+id/city_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
 
         <android.support.design.widget.TextInputLayout
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50"
-            android:layout_below="@id/city_spinner"
+
             android:background="@drawable/edit_text_background"
             app:hintEnabled="false">
 

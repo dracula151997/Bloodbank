@@ -7,167 +7,194 @@
     android:orientation="vertical"
     tools:context=".ui.activity.RequestDetailsActivity">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/person_name_text_view"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_50"
-        android:layout_marginEnd="8dp"
-        android:text="@string/fake_name"
-        android:textSize="@dimen/text_24" />
+        android:layout_height="match_parent">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_margin="@dimen/dimen_8"
-        android:background="@color/colorGray" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_4"
-        android:id="@+id/person_age_text_view"
-        android:layout_marginEnd="8dp"
-        android:text="@string/fake_age"
-        android:textSize="@dimen/text_24" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_margin="@dimen/dimen_8"
-        android:background="@color/colorGray" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_4"
-        android:layout_marginEnd="8dp"
-        android:text="@string/fake_blood_type"
-        android:id="@+id/person_blood_type_text_view"
-        android:textSize="@dimen/text_24" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_margin="@dimen/dimen_8"
-        android:background="@color/colorGray" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_4"
-        android:layout_marginEnd="8dp"
-        android:id="@+id/bags_number_text_view"
-        android:text="@string/fake_blood_num"
-        android:textSize="@dimen/text_24" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_margin="@dimen/dimen_8"
-        android:background="@color/colorGray" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_4"
-        android:layout_marginEnd="8dp"
-        android:text="@string/fake_hospital_name"
-        android:id="@+id/hospital_name_text_view"
-        android:textSize="@dimen/text_24" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_margin="@dimen/dimen_8"
-        android:background="@color/colorGray" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_4"
-        android:id="@+id/hospital_address_text_view"
-        android:layout_marginEnd="8dp"
-        android:text="@string/fake_hospital_address"
-        android:textSize="@dimen/text_24" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_margin="@dimen/dimen_8"
-        android:background="@color/colorGray" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_4"
-        android:layout_marginEnd="8dp"
-        android:id="@+id/person_phone_number_text_view"
-        android:text="@string/fake_phone_number"
-        android:textSize="@dimen/text_24" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_margin="@dimen/dimen_8"
-        android:background="@color/colorGray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/container_drawable"
-        android:layout_marginEnd="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_height="wrap_content">
-
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginTop="@dimen/dimen_4"
-            android:layout_marginEnd="@dimen/dimen_8"
-            android:text="@string/fake_details"
-            android:textSize="@dimen/text_24" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginTop="@dimen/dimen_4"
-            android:layout_marginEnd="8dp"
-            android:text="hfg,kfgjkfgklghjgh;klfhjsfhgkgjfdfsjklkdfjdfkjgfdkgjklsdfklgdjhklgjsdldlfkklfjsdjhgdjksfghjkdhjkgshfkgljsdfgjjsdfgjkdsjkghsdkjghsdkjgsglkhgsjkl"
-            android:textSize="@dimen/text_24" />
-
-    </LinearLayout>
+            android:orientation="vertical">
 
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_margin="@dimen/dimen_8"
-        android:background="@color/colorGray" />
+            <TextView
+                android:id="@+id/person_name_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_50"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:text="@string/fake_name"
+                android:textSize="@dimen/text_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                android:layout_margin="@dimen/dimen_8"
+                android:background="@color/colorGray" />
+
+            <TextView
+                android:id="@+id/person_age_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:text="@string/fake_age"
+                android:textSize="@dimen/text_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                android:layout_margin="@dimen/dimen_8"
+                android:background="@color/colorGray" />
+
+            <TextView
+                android:id="@+id/person_blood_type_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:text="@string/fake_blood_type"
+                android:textSize="@dimen/text_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                android:layout_margin="@dimen/dimen_8"
+                android:background="@color/colorGray" />
+
+            <TextView
+                android:id="@+id/bags_number_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:layout_marginEnd="8dp"
+                android:text="@string/fake_blood_num"
+                android:textSize="@dimen/text_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                android:layout_margin="@dimen/dimen_8"
+                android:background="@color/colorGray" />
+
+            <TextView
+                android:id="@+id/hospital_name_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:text="@string/fake_hospital_name"
+                android:textSize="@dimen/text_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                android:layout_margin="@dimen/dimen_8"
+                android:background="@color/colorGray" />
+
+            <TextView
+                android:id="@+id/hospital_address_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:text="@string/fake_hospital_address"
+                android:textSize="@dimen/text_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                android:layout_margin="@dimen/dimen_8"
+                android:background="@color/colorGray" />
+
+            <TextView
+                android:id="@+id/person_phone_number_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:text="@string/fake_phone_number"
+                android:textSize="@dimen/text_16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                android:layout_margin="@dimen/dimen_8"
+                android:background="@color/colorGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@drawable/container_drawable"
+                android:orientation="vertical">
 
 
-    <Button
-        style="@style/ButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginEnd="@dimen/dimen_8"
-        android:background="@color/colorGreen"
-        android:text="@string/call"
-        android:textColor="@android:color/white" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    android:text="@string/fake_details"
+                    android:textSize="@dimen/text_16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1"
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_8"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_marginEnd="8dp"
+                    android:text="hfg,kfgjkfgklghjgh;klfhjsfhgkgjfdfsjklkdfjdfkjgfdkgjklsdfklgdjhklgjsdldlfkklfjsdjhgdjksfghjkdhjkgshfkgljsdfgjjsdfgjkdsjkghsdkjghsdkjgsglkhgsjkl"
+                    android:textSize="@dimen/text_16" />
+
+            </LinearLayout>
+
+            <fragment
+                android:id="@+id/googleMap"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_height="200dp" />
+
+
+
+            <Button
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@color/colorGreen"
+                android:text="@string/call"
+                android:textColor="@android:color/white" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

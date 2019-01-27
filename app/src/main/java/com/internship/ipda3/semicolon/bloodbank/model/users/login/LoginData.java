@@ -1,5 +1,5 @@
 
-package com.internship.ipda3.semicolon.bloodbank.model.login;
+package com.internship.ipda3.semicolon.bloodbank.model.users.login;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +8,7 @@ public class LoginData {
     @SerializedName("api_token")
     private String mApiToken;
     @SerializedName("client")
-    private LoginClient mClient;
+    private  LoginClient mClient;
 
     public String getApiToken() {
         return mApiToken;

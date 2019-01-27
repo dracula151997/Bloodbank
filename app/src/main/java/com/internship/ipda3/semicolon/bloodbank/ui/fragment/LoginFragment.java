@@ -14,7 +14,6 @@ import com.internship.ipda3.semicolon.bloodbank.R;
 import com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod;
 import com.internship.ipda3.semicolon.bloodbank.model.login.Login;
 import com.internship.ipda3.semicolon.bloodbank.rest.ApiEndPoint;
-import com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient;
 import com.internship.ipda3.semicolon.bloodbank.ui.activity.MainActivity;
 
 import butterknife.BindView;
@@ -31,9 +30,9 @@ import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.showT
 import static com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient.getClient;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.error;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
-import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.clear;
-import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.rememberMe;
-import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.retrieveAccountInfo;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.clearCheckBoxState;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.readCheckBoxState;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.saveCheckBoxState;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.validatePassword;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.validatePhone;
 
@@ -72,12 +71,14 @@ public class LoginFragment extends Fragment {
 
         endPoint = getClient().create(ApiEndPoint.class);
 
-        boolean isRemembered = retrieveAccountInfo(getContext());
+        boolean isRemembered = readCheckBoxState(getContext());
         if (isRemembered) {
             intent(getContext(), MainActivity.class);
         } else {
             verbose("nothing");
         }
+
+
 
 
         unbinder = ButterKnife.bind(this, view);
@@ -112,9 +113,9 @@ public class LoginFragment extends Fragment {
         boolean isRememberMeChecked = rememberMeCheckedBox.isChecked();
 
         if (isRememberMeChecked) {
-            rememberMe(getContext());
+            saveCheckBoxState(getContext());
         } else {
-            clear(getContext());
+            clearCheckBoxState(getContext());
 
         }
 

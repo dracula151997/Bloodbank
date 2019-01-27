@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.intent;
-import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.clear;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.clearCheckBoxState;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity
                 HelperMethod.intentWithExtra(this, NavigationActivity.class, Constant.ExtrasId.ID, "8");
                 break;
             case R.id.nav_log_out:
-                clear(this);
+                clearCheckBoxState(this);
                 intent(this, LoginActivity.class);
 
         }

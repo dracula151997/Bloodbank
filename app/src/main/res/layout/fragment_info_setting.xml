@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.InfoSettingFragment">
 
     <LinearLayout
@@ -12,158 +12,164 @@
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40"
-            app:hintEnabled="false"
-            android:id="@+id/name_edit_text"
-            style="@style/TextInputLayoutStyle"
-            >
+            app:hintEnabled="false">
 
             <EditText
+                android:id="@+id/user_name_edit_text"
+                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="@style/EditTextStyle"
-                android:hint="أحمد محمد"/>
+                android:hint="أحمد محمد" />
 
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40"
-            app:hintEnabled="false"
-            android:id="@+id/email_edit_text"
-            style="@style/TextInputLayoutStyle"
-            >
+            app:hintEnabled="false">
 
             <EditText
+                android:id="@+id/email_edit_text"
+                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="@style/EditTextStyle"
-                android:hint="username@example.com"/>
+                android:hint="username@example.com" />
 
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40"
-            app:hintEnabled="false"
-            android:id="@+id/birth_day_edit_text"
-            style="@style/TextInputLayoutStyle"
-            >
+            app:hintEnabled="false">
 
             <EditText
+                android:id="@+id/birth_day_edit_text"
+                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="@style/EditTextStyle"
-                android:inputType="date"
-                android:gravity="end|center"
                 android:drawableLeft="@drawable/ic_date_range_black_24dp"
                 android:drawableTint="@color/colorBlueGray900"
-                android:hint="27/1/1990"/>
+                android:gravity="end|center"
+                android:hint="27/1/1990"
+                android:inputType="date" />
 
 
         </android.support.design.widget.TextInputLayout>
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            style="@style/TextInputLayoutStyle"
+        <Spinner
             android:id="@+id/blood_type_spinner"
-            android:hint="O+"/>
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
 
-
+            android:hint="O+" />
 
 
         <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40"
-            app:hintEnabled="false"
-            android:id="@+id/last_donate_data_edit_text"
-            style="@style/TextInputLayoutStyle"
-            >
+            app:hintEnabled="false">
 
             <EditText
+                android:id="@+id/last_donate_data_edit_text"
+                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="@style/EditTextStyle"
-                android:gravity="center|end"
-                android:drawableTint="@color/colorBlueGray900"
                 android:drawableStart="@drawable/ic_date_range_black_24dp"
-                android:hint="20/9/2018"/>
+                android:drawableTint="@color/colorBlueGray900"
+                android:gravity="center|end"
+                android:hint="20/9/2018" />
 
 
         </android.support.design.widget.TextInputLayout>
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="الدقهلية"
-            style="@style/TextInputLayoutStyle"/>
-
-
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="المنصورة"
-            style="@style/TextInputLayoutStyle"/>
-
-        <android.support.design.widget.TextInputLayout
+        <Spinner
+            android:id="@+id/governorates_spinner"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40"
-            app:hintEnabled="false"
-            android:id="@+id/password_edit_text"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:hint="الدقهلية" />
+
+
+        <Spinner
+            android:id="@+id/city_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginEnd="8dp"
+            android:hint="المنصورة" />
+
+        <android.support.design.widget.TextInputLayout
             style="@style/TextInputLayoutStyle"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false">
+
+        <EditText
+            android:id="@+id/phone_number_edit_text"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|end"
+            android:hint="01222222222" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            app:hintEnabled="false">
 
             <EditText
+                android:id="@+id/password_edit_text"
+                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="@style/EditTextStyle"
-                android:inputType="textPassword"
                 android:gravity="center|end"
-                android:hint="******"/>
+                android:hint="******"
+
+                android:inputType="textPassword" />
 
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40"
-            app:hintEnabled="false"
-            android:id="@+id/repeat_password_edit_text"
-            style="@style/TextInputLayoutStyle"
-            >
+            app:hintEnabled="false">
 
             <EditText
+                android:id="@+id/repeat_password_edit_text"
+                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="@style/EditTextStyle"
                 android:gravity="center|end"
-                android:hint="******"/>
+                android:hint="******" />
 
 
         </android.support.design.widget.TextInputLayout>
 
         <Button
+            android:id="@+id/update_info_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_8"
             android:background="@color/colorBlueGray900"
-            android:text="تعديل البيانات"
-            android:textColor="@android:color/white"
-            />
-
-
-
-
-
-
-
-
-
-
+            android:text="@string/update_info"
+            android:textColor="@android:color/white" />
 
 
     </LinearLayout>

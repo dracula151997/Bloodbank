@@ -41,11 +41,11 @@
                 android:hint="@string/age" />
         </android.support.design.widget.TextInputLayout>
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
+        <Spinner
             android:id="@+id/blood_type_spinner"
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_48"
+            android:layout_height="@dimen/dimen_40"
             android:hint="@string/blood_type" />
 
 
@@ -119,14 +119,14 @@
         </LinearLayout>
 
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
+        <Spinner
             android:id="@+id/state_spinner"
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40"
             android:hint="@string/state" />
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
+        <Spinner
             android:id="@+id/city_spinner"
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"

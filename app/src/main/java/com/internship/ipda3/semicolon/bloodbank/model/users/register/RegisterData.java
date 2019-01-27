@@ -1,5 +1,5 @@
 
-package com.internship.ipda3.semicolon.bloodbank.model.register;
+package com.internship.ipda3.semicolon.bloodbank.model.users.register;
 
 import com.google.gson.annotations.SerializedName;
 

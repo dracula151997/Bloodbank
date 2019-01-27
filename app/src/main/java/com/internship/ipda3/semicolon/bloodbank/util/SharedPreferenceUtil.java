@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
 
 public class SharedPreferenceUtil {
-    private static final String SHARED_PRE_LOGIN_NAME = "remember_me_shared_pref";
+    private static final String APP_SHARED_PREF = "app_shared_pref";
     private static final String CHECKED_KEY = "remember_me_checked";
+    private static final String FAVORITE_KEY = "favorite";
 
 
-    public static void rememberMe(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PRE_LOGIN_NAME,
+    //method to save the state of remember me check box.
+    public static void saveCheckBoxState(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_SHARED_PREF,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -23,26 +25,44 @@ public class SharedPreferenceUtil {
 
     }
 
-    public static boolean retrieveAccountInfo(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PRE_LOGIN_NAME, Context.MODE_PRIVATE);
+    //method to get the state of remember me check box.
+    public static boolean readCheckBoxState(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_SHARED_PREF, Context.MODE_PRIVATE);
         boolean isRemember = sharedPreferences.getBoolean(CHECKED_KEY, false);
 
-        verbose("retrieveAccountInfo: remember me? = " + isRemember);
+        verbose("getCheckBoxState: remember me = " + isRemember);
 
         return isRemember;
 
 
     }
 
-    public static void clear(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PRE_LOGIN_NAME,
+    //method to clearCheckBoxState the state of remember me check box.
+    public static void clearCheckBoxState(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_SHARED_PREF,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.remove(CHECKED_KEY);
         editor.apply();
 
-        verbose("clear shared preference:");
+        verbose("clearCheckBoxState shared preference:");
 
     }
+
+    public static void saveToggleButtonState(boolean isFavorite, Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_SHARED_PREF, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putBoolean(FAVORITE_KEY, isFavorite);
+        editor.apply();
+
+    }
+
+    public static boolean readToggleButtonState(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_SHARED_PREF, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(FAVORITE_KEY, true);
+    }
+
+
 }

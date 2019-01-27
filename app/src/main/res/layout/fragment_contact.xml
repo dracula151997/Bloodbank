@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_8"
+            android:id="@+id/phone_number_text"
             android:drawableEnd="@drawable/ic_phone_black_24dp"
             android:drawablePadding="@dimen/dimen_16"
             android:drawableTint="@color/colorBlueGray900"
@@ -34,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_8"
+            android:id="@+id/email_text"
             android:drawableEnd="@drawable/ic_phone_black_24dp"
             android:drawablePadding="@dimen/dimen_16"
             android:drawableTint="@color/colorBlueGray900"
@@ -136,7 +138,7 @@
             />
 
         <EditText
-            android:id="@+id/message_content_image_view"
+            android:id="@+id/message_content_edit_text"
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50"
