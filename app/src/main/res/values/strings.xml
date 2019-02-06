@@ -96,8 +96,8 @@
         <item>ديسمبر</item>
 
     </array>
-    
-    
+
+
     <array name="blood_types">
         <item>A+</item>
         <item>A-</item>
@@ -138,4 +138,14 @@
     <string name="last_donation_date_error">Enter the last donate date.</string>
     <string name="birth_date_error">Enter the birth date.</string>
     <string name="required">Required</string>
+    <string name="patient_name_text">اسم المريض:</string>
+    <string name="patient_age_text">عُمر المريض:</string>
+    <string name="blood_type_text">فصيلة الدم:</string>
+    <string name="bags_num_text">عدد الأكياس:</string>
+    <string name="hospital_name_text">اسم المستشفى:</string>
+    <string name="phone_number_text">رقم موبايل المرافق:</string>
+    <string name="hospital_address_text">عنوان  المستشفى:</string>
+    <string name="no_internet">No internet connection.</string>
+    <string name="added_to_favorite">تم الإضافة بالمفضلة بنجاح</string>
+
 </resources>

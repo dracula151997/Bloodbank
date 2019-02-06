@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.PostDetailsActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_300"
+        android:scaleType="fitXY"
+        android:id="@+id/article_image_view" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Article Title"
+                    android:layout_weight="1.5"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/black"
+                    android:padding="@dimen/dimen_8"
+                    android:textSize="@dimen/text_16"
+                    android:id="@+id/title_text_view"/>
+
+                <ToggleButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textOff=""
+                    android:layout_weight="0.5"
+                    android:padding="@dimen/dimen_8"
+                    android:textOn=""
+                    android:background="@android:color/white"
+                    android:id="@+id/favorite_toggle_button" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:layout_marginStart="@dimen/dimen_8"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Article text"
+                android:id="@+id/article_text_view"
+                android:padding="@dimen/dimen_8"
+                android:textSize="@dimen/text_16"/>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -28,4 +28,11 @@ public class SettingData {
         mCities = cities;
     }
 
+    @Override
+    public String toString() {
+        return "SettingData{" +
+                "mBloodTypes=" + mBloodTypes +
+                ", mCities=" + mCities +
+                '}';
+    }
 }

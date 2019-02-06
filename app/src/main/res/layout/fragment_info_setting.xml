@@ -139,7 +139,6 @@
                 android:layout_height="match_parent"
                 android:gravity="center|end"
                 android:hint="******"
-
                 android:inputType="textPassword" />
 
 

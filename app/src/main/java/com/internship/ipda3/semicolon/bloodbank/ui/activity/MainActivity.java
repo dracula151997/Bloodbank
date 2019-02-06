@@ -1,5 +1,6 @@
 package com.internship.ipda3.semicolon.bloodbank.ui.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -10,9 +11,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.internship.ipda3.semicolon.bloodbank.Constant;
 import com.internship.ipda3.semicolon.bloodbank.R;
@@ -22,8 +26,12 @@ import com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.REMEMBER_ME;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.intent;
+import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.readFileFromAsset;
 import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.clearCheckBoxState;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.LoadIntegerData;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.SaveData;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,6 +56,8 @@ public class MainActivity extends AppCompatActivity
                 intent(MainActivity.this, BloodRequestActivity.class);
             }
         });
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -121,7 +131,8 @@ public class MainActivity extends AppCompatActivity
 
 
             case R.id.nav_usage_help:
-                HelperMethod.intentWithExtra(this, NavigationActivity.class, Constant.ExtrasId.ID, "5");
+//                HelperMethod.intentWithExtra(this, NavigationActivity.class, Constant.ExtrasId.ID, "5");
+                showUsageInstructionDialog();
                 break;
 
             case R.id.nav_contact:
@@ -129,14 +140,15 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_about_app:
-                HelperMethod.intentWithExtra(this, NavigationActivity.class, Constant.ExtrasId.ID, "7");
+//                HelperMethod.intentWithExtra(this, NavigationActivity.class, Constant.ExtrasId.ID, "7");
+                showUsageInstructionDialog();
                 break;
 
             case R.id.nav_rate_app:
                 HelperMethod.intentWithExtra(this, NavigationActivity.class, Constant.ExtrasId.ID, "8");
                 break;
             case R.id.nav_log_out:
-                clearCheckBoxState(this);
+                SaveData(this, REMEMBER_ME, 0);
                 intent(this, LoginActivity.class);
 
         }
@@ -145,5 +157,31 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showUsageInstructionDialog() {
+        String text = readFileFromAsset(this, "usage_instruction");
+        final Dialog dialog = new Dialog(this, R.style.AppBaseTheme);
+        View layout = LayoutInflater.from(this).inflate(R.layout.custom_full_screen_dialog, null);
+        dialog.setContentView(layout);
+
+        TextView usageText = layout.findViewById(R.id.usage_instruction_text_view);
+        usageText.setText(text);
+
+        dialog.show();
+
+
+        Button dismissButton = layout.findViewById(R.id.dismiss_button);
+        dismissButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
+
+
+
     }
 }

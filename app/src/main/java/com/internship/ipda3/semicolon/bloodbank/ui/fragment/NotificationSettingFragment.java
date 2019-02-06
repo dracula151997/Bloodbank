@@ -20,6 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,6 +83,8 @@ public class NotificationSettingFragment extends Fragment {
         bloodTypeList.add("O+");
         bloodTypeList.add("O-");
 
+        RecyclerView.Adapter adapter = new NotificationSettingsAdapter(bloodTypeList, getContext());
+
         bloodTypeRecycler.setAdapter(new NotificationSettingsAdapter(bloodTypeList, getContext()));
 
     }
@@ -127,5 +130,10 @@ public class NotificationSettingFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick(R.id.save_settings_button)
+    public void onViewClicked() {
+
     }
 }

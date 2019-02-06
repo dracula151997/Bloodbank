@@ -4,9 +4,7 @@ package com.internship.ipda3.semicolon.bloodbank.ui.fragment;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,13 +15,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.internship.ipda3.semicolon.bloodbank.R;
+import com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod;
 import com.internship.ipda3.semicolon.bloodbank.model.general.cities.Cities;
 import com.internship.ipda3.semicolon.bloodbank.model.general.cities.CitiesDatum;
 import com.internship.ipda3.semicolon.bloodbank.model.general.governorates.GavernoratesDatum;
 import com.internship.ipda3.semicolon.bloodbank.model.general.governorates.Governorates;
-import com.internship.ipda3.semicolon.bloodbank.model.register.Register;
+import com.internship.ipda3.semicolon.bloodbank.model.users.register.Register;
+import com.internship.ipda3.semicolon.bloodbank.model.users.register.RegisterData;
 import com.internship.ipda3.semicolon.bloodbank.rest.ApiEndPoint;
-import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,10 +36,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.API_TOKEN;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.BIRTH_DATE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.BLOOD_TYPE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.DONATION_LAST_DATE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.EMAIL;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.PHONE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.USER_NAME;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.isNetworkAvailable;
 import static com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient.getClient;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.error;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.saveStringData;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.SaveData;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.isEmpty;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.isPasswordConfirm;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.validateEmail;
@@ -254,12 +262,11 @@ public class CreateAccountFragment extends Fragment
                 register();
                 break;
             case R.id.last_donate_data_edit:
-                showDatePicker();
-                lastDonateDataEdit.setText(date);
+                HelperMethod.showDatePicker(lastDonateDataEdit, getActivity());
                 break;
             case R.id.birth_day_edit_text:
-                showDatePicker();
-                birthDayEditText.setText(date);
+                HelperMethod.showDatePicker(birthDayEditText, getActivity());
+
                 break;
 
 
@@ -284,7 +291,7 @@ public class CreateAccountFragment extends Fragment
     private void register() {
         String username = nameEditText.getText().toString();
         String email = emailEditText.getText().toString();
-        String phoneNumber = phoneNumberEdit.getText().toString();
+        String phoneNumber = phoneNumberEdit.getText().toString().trim();
         String password = passwordEdit.getText().toString();
         String repeatPassword = repeatPasswordEdit.getText().toString();
         String lastDonationDate = lastDonateDataEdit.getText().toString();
@@ -311,10 +318,12 @@ public class CreateAccountFragment extends Fragment
             return;
         }
 
+
         if (isEmpty(lastDonationDate)) {
             lastDonateDataEdit.setError(getString(R.string.last_donation_date_error));
             return;
         }
+
 
         if (isEmpty(birthDate)) {
             birthDayEditText.setError(getString(R.string.birth_date_error));
@@ -323,30 +332,60 @@ public class CreateAccountFragment extends Fragment
 
 
         if (isNetworkAvailable(getContext())) {
-            newAccountRegister(username, email, phoneNumber, password, lastDonationDate, birthDate);
+            newAccountRegister(username, email, phoneNumber, password, repeatPassword, lastDonationDate, birthDate);
 
 
         }
     }
 
-    private void newAccountRegister(String lastDonateDate, String username, String email,
-                                    String phoneNumber, String password, String birthDate) {
+    private void newAccountRegister(final String s, String username, String email, String phoneNumber,
+                                    String password, String lastDonationDate, String birthDate) {
 
-        mEndPoints.register(username, email, birthDate, mCityId, phoneNumber,
-                lastDonateDate, password, bloodType).enqueue(new Callback<Register>() {
-            @Override
-            public void onResponse(Call<Register> call, Response<Register> response) {
-                verbose("onRegisterResponse: " + response.body().getMsg());
+        mEndPoints.register("Mohammed", "hassan12g3ss@gmail.com", "1990-01-01", 1, "01057289710", "2018-06-01", "123", "123", "O+")
+                .enqueue(new Callback<Register>() {
+                    @Override
+                    public void onResponse(Call<Register> call, Response<Register> response) {
+                        if (response.code() == 200) {
+                            String msg = response.body().getMsg();
+                            long status = response.body().getStatus();
+                            verbose("onResponse: register response: " + msg);
+                            if (status == 1) {
 
-            }
+                                RegisterData registerData = response.body().getData();
+                                String apiToken = registerData.getApiToken();
+                                String name = registerData.getClient().getName();
+                                String email = registerData.getClient().getEmail();
+                                String birthDate = registerData.getClient().getBirthDate();
+                                String phone = registerData.getClient().getPhone();
+                                String donationLastDate = registerData.getClient().getDonationLastDate();
+                                String bloodType = registerData.getClient().getBloodType();
 
-            @Override
-            public void onFailure(Call<Register> call, Throwable t) {
-                verbose("onRegisterFailure: " + t.getMessage());
+                                SaveData(getActivity(), API_TOKEN, apiToken);
+                                SaveData(getActivity(), USER_NAME, name);
+                                SaveData(getActivity(), EMAIL, email);
+                                SaveData(getActivity(), BIRTH_DATE, birthDate);
+                                SaveData(getActivity(), PHONE, phone);
+                                SaveData(getActivity(), DONATION_LAST_DATE, donationLastDate);
+                                SaveData(getActivity(), BLOOD_TYPE, bloodType);
 
-            }
-        });
+                            }
+
+                        } else {
+                            verbose("onResponse: response raw: " + response.raw());
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Register> call, Throwable t) {
+                        error("onFailure: register: " + t.getMessage());
+
+
+                    }
+                });
     }
+
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

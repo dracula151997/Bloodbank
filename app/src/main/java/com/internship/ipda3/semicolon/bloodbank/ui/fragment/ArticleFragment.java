@@ -16,6 +16,7 @@ import com.internship.ipda3.semicolon.bloodbank.model.posts.post.Posts;
 import com.internship.ipda3.semicolon.bloodbank.model.posts.post.PostsData;
 import com.internship.ipda3.semicolon.bloodbank.model.posts.post.PostsDatum;
 import com.internship.ipda3.semicolon.bloodbank.rest.ApiEndPoint;
+import com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +28,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.API_TOKEN;
 import static com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient.getClient;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.error;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.LoadStringData;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ArticleFragment extends Fragment {
-    private static final String API_TOKEN = "Zz9HuAjCY4kw2Ma2XaA6x7T5O3UODws1UakXI9vgFVSoY3xUXYOarHX2VH27";
 
     int max;
+    String apiToken;
 
 
     @BindView(R.id.article_recycler_view)
@@ -58,6 +61,9 @@ public class ArticleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_article, container, false);
         unbinder = ButterKnife.bind(this, view);
 
+        apiToken = LoadStringData(getActivity(), API_TOKEN);
+        verbose("user api token: " + apiToken);
+
 
         mEndPoints = getClient().create(ApiEndPoint.class);
         setupRecyclerView();
@@ -69,13 +75,13 @@ public class ArticleFragment extends Fragment {
     }
 
     private void loadPosts(int page) {
-        mEndPoints.getPosts(API_TOKEN, page)
+        mEndPoints.getPosts(apiToken, page)
                 .enqueue(new Callback<Posts>() {
                     @Override
                     public void onResponse(Call<Posts> call, Response<Posts> response) {
                         verbose("onPostsResponse: response raw: " + response.raw());
                         List<PostsDatum> data = response.body().getData().getData();
-                        articleRecyclerView.setAdapter(new PostRecyclerAdapter(data, getContext()));
+                        articleRecyclerView.setAdapter(new PostRecyclerAdapter(data, getContext(), getActivity()));
                     }
 
                     @Override

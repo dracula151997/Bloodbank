@@ -12,9 +12,10 @@ import android.widget.EditText;
 
 import com.internship.ipda3.semicolon.bloodbank.R;
 import com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod;
-import com.internship.ipda3.semicolon.bloodbank.model.login.Login;
+import com.internship.ipda3.semicolon.bloodbank.model.users.login.Login;
 import com.internship.ipda3.semicolon.bloodbank.rest.ApiEndPoint;
 import com.internship.ipda3.semicolon.bloodbank.ui.activity.MainActivity;
+import com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +25,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.API_TOKEN;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.BIRTH_DATE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.BLOOD_TYPE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.CITY_ID;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.DONATION_LAST_DATE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.EMAIL;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.PHONE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.REMEMBER_ME;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.USER_NAME;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.intent;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.isNetworkAvailable;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.showToast;
@@ -33,6 +44,9 @@ import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
 import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.clearCheckBoxState;
 import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.readCheckBoxState;
 import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.saveCheckBoxState;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.saveStringData;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.LoadIntegerData;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.SaveData;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.validatePassword;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.validatePhone;
 
@@ -69,20 +83,21 @@ public class LoginFragment extends Fragment {
 
         mManager = getFragmentManager();
 
+        rememberMe();
+
+
         endPoint = getClient().create(ApiEndPoint.class);
-
-        boolean isRemembered = readCheckBoxState(getContext());
-        if (isRemembered) {
-            intent(getContext(), MainActivity.class);
-        } else {
-            verbose("nothing");
-        }
-
-
 
 
         unbinder = ButterKnife.bind(this, view);
         return view;
+    }
+
+    private void rememberMe() {
+        int remember = LoadIntegerData(getActivity(), REMEMBER_ME);
+        if (remember == 1) {
+            intent(getContext(), MainActivity.class);
+        }
     }
 
     @Override
@@ -113,20 +128,17 @@ public class LoginFragment extends Fragment {
         boolean isRememberMeChecked = rememberMeCheckedBox.isChecked();
 
         if (isRememberMeChecked) {
-            saveCheckBoxState(getContext());
+            SaveData(getActivity(), REMEMBER_ME, 1);
         } else {
-            clearCheckBoxState(getContext());
-
+            SaveData(getActivity(), REMEMBER_ME, 0);
         }
 
 
         if (!validatePassword(password)) {
-            verbose("password: not valid");
             passwordEdit.setError(getString(R.string.password_error));
         }
 
         if (!validatePhone(phoneNumber)) {
-            verbose("phone: not valid");
             phoneNumberEdit.setError(getString(R.string.phone_number_error));
             return;
         }
@@ -135,7 +147,7 @@ public class LoginFragment extends Fragment {
             loginRequest(phoneNumber, password);
 
         } else {
-            error("No internet available.");
+            showToast(getContext(), getString(R.string.no_internet));
         }
 
 
@@ -149,10 +161,22 @@ public class LoginFragment extends Fragment {
                         long status = response.body().getStatus();
                         String msg = response.body().getMsg();
                         if (status == 1) {
+
+                            String apiToken = response.body().getData().getApiToken();
+                            String name = response.body().getData().getClient().getName();
+                            String email = response.body().getData().getClient().getEmail();
+                            String phone = response.body().getData().getClient().getPhone();
+                            String birthDate = response.body().getData().getClient().getBirthDate();
+                            String lastDonationDate = response.body().getData().getClient().getDonationLastDate();
+                            String cityId = response.body().getData().getClient().getCityId();
+                            String bloodType = response.body().getData().getClient().getBloodType();
+
+                            saveData(apiToken, name, email, phone, birthDate, lastDonationDate, cityId, bloodType);
+
                             showToast(getContext(), msg);
                             intent(getContext(), MainActivity.class);
                         } else {
-                            verbose(msg);
+                            showToast(getContext(), msg);
                         }
                     }
 
@@ -162,6 +186,20 @@ public class LoginFragment extends Fragment {
 
                     }
                 });
+    }
+
+    private void saveData(String apiToken, String name, String email, String phone,
+                          String birthDate, String lastDonationDate, String cityId, String bloodType) {
+
+        SaveData(getActivity(), API_TOKEN, apiToken);
+        SaveData(getActivity(), USER_NAME, name);
+        SaveData(getActivity(), EMAIL, email);
+        SaveData(getActivity(), PHONE, phone);
+        SaveData(getActivity(), BIRTH_DATE, birthDate);
+        SaveData(getActivity(), DONATION_LAST_DATE, lastDonationDate);
+        SaveData(getActivity(), CITY_ID, cityId);
+        SaveData(getActivity(), BLOOD_TYPE, bloodType);
+
     }
 
 

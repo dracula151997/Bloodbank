@@ -28,4 +28,11 @@ public class ToggleData {
         mDetached = detached;
     }
 
+    @Override
+    public String toString() {
+        return "ToggleData{" +
+                "mAttached=" + mAttached +
+                ", mDetached=" + mDetached +
+                '}';
+    }
 }

@@ -25,23 +25,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.API_TOKEN;
 import static com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient.getClient;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.LoadStringData;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BloodRequestFragment extends Fragment {
-    private static final String API_TOKEN = "Zz9HuAjCY4kw2Ma2XaA6x7T5O3UODws1UakXI9vgFVSoY3xUXYOarHX2VH27";
 
 
     @BindView(R.id.requests_blood_recycler)
     RecyclerView requestsBloodRecycler;
     Unbinder unbinder;
-
+    String apiToken;
     private ApiEndPoint mEndPoint;
 
-    int max = 0;
 
     public BloodRequestFragment() {
         // Required empty public constructor
@@ -55,6 +55,8 @@ public class BloodRequestFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_blood_request, container, false);
 
         unbinder = ButterKnife.bind(this, view);
+
+        apiToken = LoadStringData(getActivity(), API_TOKEN);
         setupRecyclerView();
         mEndPoint = getClient().create(ApiEndPoint.class);
         retrieveBloodRequests();
@@ -63,7 +65,7 @@ public class BloodRequestFragment extends Fragment {
     }
 
     private void retrieveBloodRequests() {
-        mEndPoint.getDonationRequests(API_TOKEN)
+        mEndPoint.getDonationRequests(apiToken)
                 .enqueue(new Callback<DonationRequests>() {
                     @Override
                     public void onResponse(Call<DonationRequests> call, Response<DonationRequests> response) {
@@ -83,20 +85,8 @@ public class BloodRequestFragment extends Fragment {
     private void setupRecyclerView() {
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
         requestsBloodRecycler.setLayoutManager(manager);
-
         requestsBloodRecycler.setHasFixedSize(true);
-/*
-        requestsBloodRecycler.setOnScrollListener(new EndlessRecyclerOnScrollListener(manager) {
-            @Override
-            public void onLoadMore(int current_page) {
-                if (current_page <= max){
-                    max = current_page;
-                    retrieveBloodRequests(current_page);
 
-                }
-
-            }
-        });*/
 
     }
 

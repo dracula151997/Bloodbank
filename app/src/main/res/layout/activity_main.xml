@@ -17,12 +17,13 @@
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:itemTextColor="@color/colorBlueGray900"
-        app:itemTextAppearance="@style/TextAppearance.AppCompat.Small"
         android:layout_gravity="start"
-        app:itemIconTint="@color/colorBlueGray900"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
+        app:itemIconTint="@color/colorBlueGray900"
+        app:itemTextAppearance="@style/TextAppearance.AppCompat.Small"
+        app:itemTextColor="@color/colorBlueGray900"
         app:menu="@menu/activity_main_drawer" />
+
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,7 +1,5 @@
 package com.internship.ipda3.semicolon.bloodbank.rest;
 
-import android.os.Bundle;
-
 import com.internship.ipda3.semicolon.bloodbank.model.donation.details.DonationDetails;
 import com.internship.ipda3.semicolon.bloodbank.model.donation.request.CreateRequest;
 import com.internship.ipda3.semicolon.bloodbank.model.donation.requests.DonationRequests;
@@ -10,7 +8,6 @@ import com.internship.ipda3.semicolon.bloodbank.model.general.contact.ContactUs;
 import com.internship.ipda3.semicolon.bloodbank.model.general.governorates.Governorates;
 import com.internship.ipda3.semicolon.bloodbank.model.general.report.Report;
 import com.internship.ipda3.semicolon.bloodbank.model.general.settings.Settings;
-import com.internship.ipda3.semicolon.bloodbank.model.login.Login;
 import com.internship.ipda3.semicolon.bloodbank.model.logs.Logs;
 import com.internship.ipda3.semicolon.bloodbank.model.notification.Token;
 import com.internship.ipda3.semicolon.bloodbank.model.notification.count.NotificationCount;
@@ -20,9 +17,10 @@ import com.internship.ipda3.semicolon.bloodbank.model.posts.details.PostDetials;
 import com.internship.ipda3.semicolon.bloodbank.model.posts.favorite.FavoritePost;
 import com.internship.ipda3.semicolon.bloodbank.model.posts.post.Posts;
 import com.internship.ipda3.semicolon.bloodbank.model.posts.toggle.FavoritePostToggle;
-import com.internship.ipda3.semicolon.bloodbank.model.register.Register;
+import com.internship.ipda3.semicolon.bloodbank.model.users.login.Login;
 import com.internship.ipda3.semicolon.bloodbank.model.users.password.change.NewPassword;
 import com.internship.ipda3.semicolon.bloodbank.model.users.password.rest.RestPassword;
+import com.internship.ipda3.semicolon.bloodbank.model.users.register.Register;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -49,6 +47,8 @@ public interface ApiEndPoint {
                                     String donation_last_date,
                             @Field("password")
                                     String password,
+                            @Field("password_confirmation")
+                                    String password_confirmation,
                             @Field("blood_type")
                                     String blood_type);
 
@@ -193,7 +193,7 @@ public interface ApiEndPoint {
     @POST("post-toggle-favourite")
     @FormUrlEncoded
     Call<FavoritePostToggle> postToggleFavourite(@Field("post_id")
-                                                         String post_id,
+                                                         long post_id,
                                                  @Field("api_token")
                                                          String api_token);
 

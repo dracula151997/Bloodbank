@@ -9,7 +9,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.internship.ipda3.semicolon.bloodbank.R;
@@ -22,10 +21,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.internship.ipda3.semicolon.bloodbank.Constant.API_TOKEN;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.API_TOKEN;
 import static com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient.getClient;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.error;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.LoadStringData;
 
 public class RequestDetailsActivity extends AppCompatActivity implements OnMapReadyCallback {
     @BindView(R.id.person_name_text_view)
@@ -42,13 +42,16 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     TextView hospitalAddressTextView;
     @BindView(R.id.person_phone_number_text_view)
     TextView personPhoneNumberTextView;
+    @BindView(R.id.detail_tect_view)
+    TextView detailTectView;
     private String donationId;
     private ApiEndPoint endPoint;
 
     private GoogleMap mMap;
     private double mLat;
     private double mLong;
-    private LatLng latLng;
+
+    String apiToken;
 
 
     @Override
@@ -61,7 +64,10 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
             donationId = getIntent().getStringExtra("donation_id");
         }
 
+        apiToken = LoadStringData(this, API_TOKEN);
+
         endPoint = getClient().create(ApiEndPoint.class);
+
         getDonationDetails(donationId);
 
 
@@ -75,19 +81,30 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     }
 
     private void getDonationDetails(String donationId) {
-        endPoint.getDonationDetails(API_TOKEN, donationId)
+        endPoint.getDonationDetails(apiToken, donationId)
                 .enqueue(new Callback<DonationDetails>() {
                     @Override
                     public void onResponse(Call<DonationDetails> call, Response<DonationDetails> response) {
                         String msg = response.body().getMsg();
-                        if (response.body().getStatus() == 1) {
-                            verbose("onResponse: getDonationDetails: " + msg);
-                            personNameTextView.setText(response.body().getData().getPatientName());
-                            personAgeTextView.setText(response.body().getData().getPatientAge());
-                            personBloodTypeTextView.setText(response.body().getData().getBloodType());
-                            bagsNumberTextView.setText(response.body().getData().getBagsNum());
-                            hospitalNameTextView.setText(response.body().getData().getHospitalName());
-                            personPhoneNumberTextView.setText(response.body().getData().getPhone());
+                        long status = response.body().getStatus();
+                        if (status == 1) {
+                            verbose("onResponse: getDonationDetails: response message: " + msg);
+                            personNameTextView.setText(String.format("%s%s",
+                                    getString(R.string.patient_name_text), response.body().getData().getPatientName()));
+                            personAgeTextView.setText(String.format("%s%s",
+                                    getString(R.string.patient_age_text), response.body().getData().getPatientAge()));
+                            personBloodTypeTextView.setText(String.format("%s%s",
+                                    getString(R.string.blood_type_text), response.body().getData().getBloodType()));
+                            bagsNumberTextView.setText(String.format("%s%s",
+                                    getString(R.string.bags_num_text), response.body().getData().getBagsNum()));
+                            hospitalNameTextView.setText(String.format("%s%s",
+                                    getString(R.string.hospital_name_text), response.body().getData().getHospitalName()));
+                            personPhoneNumberTextView.setText(String.format("%s%s",
+                                    getString(R.string.phone_number_text), response.body().getData().getPhone()));
+                            hospitalAddressTextView.setText(String.format("%s%s",
+                                    getString(R.string.hospital_address_text), response.body().getData().getHospitalAddress()));
+                            detailTectView.setText(response.body().getData().getNotes());
+
 
                             mLat = Double.parseDouble(response.body().getData().getLatitude());
                             mLong = Double.parseDouble(response.body().getData().getLongitude());
@@ -95,7 +112,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
                             addMarker(mLat, mLong);
                             verbose("onResponse: getDonationDetails: latitude and longitude: " + mLat + ", " + mLong);
                         } else {
-                            verbose("onResponse: getDonationDetails: " + msg);
+                            verbose("onResponse: getDonationDetails: response message: " + msg);
                         }
                     }
 
@@ -118,9 +135,6 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(this);
         this.mMap = googleMap;
-
-
-
 
 
     }

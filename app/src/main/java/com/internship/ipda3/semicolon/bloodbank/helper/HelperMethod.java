@@ -1,6 +1,7 @@
 package com.internship.ipda3.semicolon.bloodbank.helper;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -11,21 +12,18 @@ import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.internship.ipda3.semicolon.bloodbank.R;
-
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
 
 public class HelperMethod {
 
@@ -111,6 +109,53 @@ public class HelperMethod {
         in.setData(Uri.parse(url));
         context.startActivity(in);
 
+    }
+
+    public static String readFileFromAsset(Context context, String fileName) {
+        String text = "";
+
+        try {
+            InputStream inputStream = context.getAssets().open(fileName);
+
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+
+            inputStream.read(buffer);
+            inputStream.close();
+
+            text = new String(buffer);
+            verbose("readFileFromAsset: text: " + text);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return text;
+
+
+    }
+
+    public static void showDatePicker(final EditText editText, Activity activity){
+        final Calendar calendar = Calendar.getInstance();
+
+        DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                String pattern = "yyyy-MM-dd";
+                SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
+                editText.setText(dateFormat.format(calendar.getTime()));
+
+
+
+            }
+        };
+
+        new DatePickerDialog(activity, datePicker, calendar.get(Calendar.YEAR), Calendar.MONTH, Calendar.DAY_OF_MONTH)
+                .show();
     }
 
 

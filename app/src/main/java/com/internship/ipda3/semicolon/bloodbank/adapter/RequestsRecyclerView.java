@@ -2,6 +2,7 @@ package com.internship.ipda3.semicolon.bloodbank.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.internship.ipda3.semicolon.bloodbank.R;
 import com.internship.ipda3.semicolon.bloodbank.model.donation.requests.DonationRequests;
 import com.internship.ipda3.semicolon.bloodbank.model.donation.requests.RequestsDatum;
 import com.internship.ipda3.semicolon.bloodbank.ui.activity.RequestDetailsActivity;
+import com.internship.ipda3.semicolon.bloodbank.ui.fragment.PostDetailFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,12 +59,14 @@ public class RequestsRecyclerView extends RecyclerView.Adapter<RequestsRecyclerV
             public void onClick(View v) {
                 intentWithPhoneAction(context, requestsData.getPhone());
 
+
             }
         });
 
         holder.detailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String donationID = String.valueOf(requestsData.getId());
                 intentWithExtra(context, RequestDetailsActivity.class, "donation_id", donationID);
             }

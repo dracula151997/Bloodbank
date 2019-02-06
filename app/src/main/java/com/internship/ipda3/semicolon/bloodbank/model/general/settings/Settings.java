@@ -38,4 +38,12 @@ public class Settings {
         mStatus = status;
     }
 
+    @Override
+    public String toString() {
+        return "Settings{" +
+                "mData=" + mData +
+                ", mMsg='" + mMsg + '\'' +
+                ", mStatus=" + mStatus +
+                '}';
+    }
 }

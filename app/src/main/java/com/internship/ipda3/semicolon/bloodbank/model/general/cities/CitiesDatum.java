@@ -68,4 +68,15 @@ public class CitiesDatum {
         mUpdatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "CitiesDatum{" +
+                "mCreatedAt=" + mCreatedAt +
+                ", mGovernorate=" + mGovernorate +
+                ", mGovernorateId='" + mGovernorateId + '\'' +
+                ", mId=" + mId +
+                ", mName='" + mName + '\'' +
+                ", mUpdatedAt=" + mUpdatedAt +
+                '}';
+    }
 }

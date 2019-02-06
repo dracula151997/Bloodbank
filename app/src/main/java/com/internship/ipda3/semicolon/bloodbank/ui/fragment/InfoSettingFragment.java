@@ -6,12 +6,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.internship.ipda3.semicolon.bloodbank.R;
-import com.internship.ipda3.semicolon.bloodbank.model.login.Login;
+import com.internship.ipda3.semicolon.bloodbank.model.general.cities.Cities;
+import com.internship.ipda3.semicolon.bloodbank.model.general.cities.CitiesDatum;
+import com.internship.ipda3.semicolon.bloodbank.model.general.governorates.GavernoratesDatum;
+import com.internship.ipda3.semicolon.bloodbank.model.general.governorates.Governorates;
+import com.internship.ipda3.semicolon.bloodbank.model.users.login.Login;
 import com.internship.ipda3.semicolon.bloodbank.rest.ApiEndPoint;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,13 +29,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.internship.ipda3.semicolon.bloodbank.Constant.API_TOKEN;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.API_TOKEN;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.BIRTH_DATE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.CITY_ID;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.DONATION_LAST_DATE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.EMAIL;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.PHONE;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.USER_NAME;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.isNetworkAvailable;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.setError;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.showToast;
 import static com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient.getClient;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.error;
-import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.isEmpty;
+import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.LoadStringData;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.isPasswordConfirm;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.validateEmail;
 import static com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil.validateName;
@@ -59,6 +74,12 @@ public class InfoSettingFragment extends Fragment {
     EditText repeatPasswordEditText;
     Unbinder unbinder;
 
+    String apiToken;
+
+    int cityId;
+    @BindView(R.id.phone_number_edit_text)
+    EditText phoneNumberEditText;
+
     private ApiEndPoint mEndPoint;
 
     public InfoSettingFragment() {
@@ -75,11 +96,123 @@ public class InfoSettingFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         mEndPoint = getClient().create(ApiEndPoint.class);
 
+        apiToken = LoadStringData(getActivity(), API_TOKEN);
+
+        displayUserData();
 
 
         return view;
     }
 
+    private void displayUserData() {
+        String name = LoadStringData(getActivity(), USER_NAME);
+        userNameEditText.setText(name);
+
+        String email = LoadStringData(getActivity(), EMAIL);
+        emailEditText.setText(email);
+
+        String birthDate = LoadStringData(getActivity(), BIRTH_DATE);
+        birthDayEditText.setText(birthDate);
+
+        String lastDonationDate = LoadStringData(getActivity(), DONATION_LAST_DATE);
+        lastDonateDataEditText.setText(lastDonationDate);
+
+        String phoneNumber = LoadStringData(getActivity(), PHONE);
+        phoneNumberEditText.setText(phoneNumber);
+
+
+        int cityId = Integer.parseInt(LoadStringData(getActivity(), CITY_ID));
+
+        CitySpinner(cityId);
+
+
+    }
+
+    private void CitySpinner(final int cityId) {
+        mEndPoint.getGovernorates()
+                .enqueue(new Callback<Governorates>() {
+                    @Override
+                    public void onResponse(Call<Governorates> call, Response<Governorates> response) {
+                        if (response.code() == 200) {
+                            long status = response.body().getStatus();
+                            if (status == 1) {
+                                List<String> gavernorate = new ArrayList<>();
+                                List<Integer> governorateId = new ArrayList<>();
+                                governorateId.add(0);
+                                gavernorate.add(getString(R.string.state));
+                                List<GavernoratesDatum> data = response.body().getData();
+                                for (int i = 0; i < data.size(); i++) {
+                                    verbose("gavernorates data: " + data.toString());
+                                    String gavernorateName = data.get(i).getName();
+
+                                    gavernorate.add(gavernorateName);
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                                            android.R.layout.simple_spinner_dropdown_item, gavernorate);
+                                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    governoratesSpinner.setAdapter(adapter);
+
+
+                                    long id = data.get(i).getId();
+                                    getCity(id, cityId);
+
+                                }
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Governorates> call, Throwable t) {
+                        error("onResponse: city spinner: " + t.getMessage());
+
+                    }
+                });
+    }
+
+    private void getCity(long id, final int cityId) {
+        mEndPoint.getCities(id)
+                .enqueue(new Callback<Cities>() {
+                    @Override
+                    public void onResponse(Call<Cities> call, Response<Cities> response) {
+                        if (response.code() == 200) {
+                            long status = response.body().getStatus();
+                            if (status == 1) {
+                                List<CitiesDatum> data = response.body().getData();
+                                List<String> cities = new ArrayList<>();
+                                List<Integer> ID = new ArrayList<>();
+                                cities.add(getString(R.string.city));
+                                ID.add(0);
+                                for (int i = 0; i < data.size(); i++) {
+                                    verbose("cities: " + data.toString());
+                                    int id = data.get(i).getId();
+                                    if (cityId == id) {
+
+                                        String governorateId = data.get(i).getGovernorateId();
+
+                                        String cityName = data.get(i).getName();
+                                        cities.add(cityName);
+                                        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                                                android.R.layout.simple_spinner_dropdown_item, cities);
+                                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                        citySpinner.setAdapter(adapter);
+                                        verbose(String.format("city name and governorate name: %s, %s", cityName, governorateId));
+
+                                    }
+
+                                }
+
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Cities> call, Throwable t) {
+                        error("onResponse: get city: " + t.getMessage());
+
+                    }
+                });
+    }
 
     @Override
     public void onDestroyView() {
@@ -99,6 +232,7 @@ public class InfoSettingFragment extends Fragment {
         String lastDonation = lastDonateDataEditText.getText().toString();*/
         String password = passwordEditText.getText().toString();
         String repeatedPassword = repeatPasswordEditText.getText().toString();
+
 
         if (!validateName(name)) {
             setError(userNameEditText, R.string.user_name_error, getContext());

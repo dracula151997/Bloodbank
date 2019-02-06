@@ -36,4 +36,12 @@ public class CreateRequest {
         mStatus = status;
     }
 
+    @Override
+    public String toString() {
+        return "CreateRequest{" +
+                "mData=" + mData +
+                ", mMsg='" + mMsg + '\'' +
+                ", mStatus=" + mStatus +
+                '}';
+    }
 }

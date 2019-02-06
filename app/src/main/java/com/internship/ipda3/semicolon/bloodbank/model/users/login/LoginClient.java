@@ -126,4 +126,21 @@ public class LoginClient {
         mUpdatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "LoginClient{" +
+                "mBirthDate='" + mBirthDate + '\'' +
+                ", mBloodType='" + mBloodType + '\'' +
+                ", mCityId='" + mCityId + '\'' +
+                ", mCreatedAt='" + mCreatedAt + '\'' +
+                ", mDonationLastDate='" + mDonationLastDate + '\'' +
+                ", mEmail='" + mEmail + '\'' +
+                ", mId=" + mId +
+                ", mIsActive='" + mIsActive + '\'' +
+                ", mName='" + mName + '\'' +
+                ", mPhone='" + mPhone + '\'' +
+                ", mPinCode='" + mPinCode + '\'' +
+                ", mUpdatedAt='" + mUpdatedAt + '\'' +
+                '}';
+    }
 }

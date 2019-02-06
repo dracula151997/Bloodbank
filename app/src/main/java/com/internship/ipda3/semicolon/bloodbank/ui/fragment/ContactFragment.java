@@ -23,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.internship.ipda3.semicolon.bloodbank.Constant.API_TOKEN;
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.API_TOKEN;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.isNetworkAvailable;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.setError;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.showToast;
@@ -90,8 +90,11 @@ public class ContactFragment extends Fragment {
                     @Override
                     public void onResponse(Call<Settings> call, Response<Settings> response) {
                         String msg = response.body().getMsg();
-                        if (response.body().getStatus() == 1) {
-                            verbose("onResponse: settings: " + msg);
+                        long status = response.body().getStatus();
+                        if (status == 1) {
+                            verbose("onResponse: settings: response data: " + response.body().toString());
+                        } else {
+                            verbose("onResponse: settings: response message: " + msg);
                         }
                     }
 

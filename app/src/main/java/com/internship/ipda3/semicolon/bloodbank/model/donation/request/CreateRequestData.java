@@ -167,4 +167,25 @@ public class CreateRequestData {
         mUpdatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "CreateRequestData{" +
+                "mBagsNum='" + mBagsNum + '\'' +
+                ", mBloodType='" + mBloodType + '\'' +
+                ", mCity=" + mCity +
+                ", mCityId='" + mCityId + '\'' +
+                ", mClientId=" + mClientId +
+                ", mCreatedAt='" + mCreatedAt + '\'' +
+                ", mHospitalAddress='" + mHospitalAddress + '\'' +
+                ", mHospitalName='" + mHospitalName + '\'' +
+                ", mId=" + mId +
+                ", mLatitude='" + mLatitude + '\'' +
+                ", mLongitude='" + mLongitude + '\'' +
+                ", mNotes='" + mNotes + '\'' +
+                ", mPatientAge='" + mPatientAge + '\'' +
+                ", mPatientName='" + mPatientName + '\'' +
+                ", mPhone='" + mPhone + '\'' +
+                ", mUpdatedAt='" + mUpdatedAt + '\'' +
+                '}';
+    }
 }

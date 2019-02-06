@@ -47,4 +47,13 @@ public class GavernoratesDatum {
         mUpdatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "GavernoratesDatum{" +
+                "mCreatedAt=" + mCreatedAt +
+                ", mId=" + mId +
+                ", mName='" + mName + '\'' +
+                ", mUpdatedAt=" + mUpdatedAt +
+                '}';
+    }
 }

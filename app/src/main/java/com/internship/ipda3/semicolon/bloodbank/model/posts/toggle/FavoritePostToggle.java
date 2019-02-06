@@ -37,4 +37,12 @@ public class FavoritePostToggle {
         mStatus = status;
     }
 
+    @Override
+    public String toString() {
+        return "FavoritePostToggle{" +
+                "mData=" + mData +
+                ", mMsg='" + mMsg + '\'' +
+                ", mStatus=" + mStatus +
+                '}';
+    }
 }

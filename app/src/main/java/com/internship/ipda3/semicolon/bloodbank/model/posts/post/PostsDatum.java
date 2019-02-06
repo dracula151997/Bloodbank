@@ -116,4 +116,20 @@ public class PostsDatum {
         mUpdatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "PostsDatum{" +
+                "mCategory=" + mCategory +
+                ", mCategoryId='" + mCategoryId + '\'' +
+                ", mContent='" + mContent + '\'' +
+                ", mCreatedAt=" + mCreatedAt +
+                ", mId=" + mId +
+                ", mIsFavourite=" + mIsFavourite +
+                ", mPublishDate='" + mPublishDate + '\'' +
+                ", mThumbnail='" + mThumbnail + '\'' +
+                ", mThumbnailFullPath='" + mThumbnailFullPath + '\'' +
+                ", mTitle='" + mTitle + '\'' +
+                ", mUpdatedAt=" + mUpdatedAt +
+                '}';
+    }
 }

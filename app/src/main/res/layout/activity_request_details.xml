@@ -163,6 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_8"
                     android:layout_marginTop="@dimen/dimen_4"
+                    android:id="@+id/detail_tect_view"
                     android:layout_marginEnd="8dp"
                     android:text="hfg,kfgjkfgklghjgh;klfhjsfhgkgjfdfsjklkdfjdfkjgfdkgjklsdfklgdjhklgjsdldlfkklfjsdjhgdjksfghjkdhjkgshfkgljsdfgjjsdfgjkdsjkghsdkjghsdkjgsglkhgsjkl"
                     android:textSize="@dimen/text_16" />
