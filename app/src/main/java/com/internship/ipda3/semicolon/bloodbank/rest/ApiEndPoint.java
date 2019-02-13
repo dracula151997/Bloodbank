@@ -118,9 +118,9 @@ public interface ApiEndPoint {
     Call<NotificationSetting> notificationSettings(@Field("api_token")
                                                            String api_token,
                                                    @Field("cities[0]")
-                                                           String[] cities,
+                                                           Object[] cities,
                                                    @Field("blood_types[0]")
-                                                           String[] blood_types);
+                                                           Object[] blood_types);
 
     @GET("notifications")
     @Headers("Accept: application/json")

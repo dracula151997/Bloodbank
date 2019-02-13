@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/home/dev/Downloads/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_favorite_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/home/dev/Downloads/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/toggle/ic_star_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_patient" />
+                            <entry key="outputName" value="ic_star_black_24dp" />
                             <entry key="sourceFile" value="$PROJECT_DIR$/../../patient.svg" />
                           </map>
                         </option>

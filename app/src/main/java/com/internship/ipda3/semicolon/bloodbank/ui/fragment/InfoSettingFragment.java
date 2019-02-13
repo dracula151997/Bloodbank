@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -76,6 +77,10 @@ public class InfoSettingFragment extends Fragment {
 
     String apiToken;
 
+    ArrayAdapter<String> governorateAdapter;
+    List<String> gavernorate = new ArrayList<>();
+    List<Integer> governorateId = new ArrayList<>();
+
     int cityId;
     @BindView(R.id.phone_number_edit_text)
     EditText phoneNumberEditText;
@@ -136,20 +141,19 @@ public class InfoSettingFragment extends Fragment {
                         if (response.code() == 200) {
                             long status = response.body().getStatus();
                             if (status == 1) {
-                                List<String> gavernorate = new ArrayList<>();
-                                List<Integer> governorateId = new ArrayList<>();
-                                governorateId.add(0);
-                                gavernorate.add(getString(R.string.state));
+                                 gavernorate = new ArrayList<>();
+                                 governorateId = new ArrayList<>();
+                                 governorateId.add(0);
+                                 gavernorate.add(getString(R.string.state));
                                 List<GavernoratesDatum> data = response.body().getData();
                                 for (int i = 0; i < data.size(); i++) {
                                     verbose("gavernorates data: " + data.toString());
                                     String gavernorateName = data.get(i).getName();
-
                                     gavernorate.add(gavernorateName);
-                                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                                    governorateAdapter = new ArrayAdapter<>(getContext(),
                                             android.R.layout.simple_spinner_dropdown_item, gavernorate);
-                                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                    governoratesSpinner.setAdapter(adapter);
+                                    governorateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    governoratesSpinner.setAdapter(governorateAdapter);
 
 
                                     long id = data.get(i).getId();
@@ -186,18 +190,20 @@ public class InfoSettingFragment extends Fragment {
                                     verbose("cities: " + data.toString());
                                     int id = data.get(i).getId();
                                     if (cityId == id) {
-
-                                        String governorateId = data.get(i).getGovernorateId();
-
                                         String cityName = data.get(i).getName();
-                                        cities.add(cityName);
-                                        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
-                                                android.R.layout.simple_spinner_dropdown_item, cities);
-                                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                        citySpinner.setAdapter(adapter);
-                                        verbose(String.format("city name and governorate name: %s, %s", cityName, governorateId));
+                                        cities.add(0, cityName);
+                                        ID.add(id);
+
+                                        int governorate_id = Integer.parseInt(data.get(i).getGovernorateId());
+                                        selectGovernorateName(governorate_id);
+
 
                                     }
+
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                                            android.R.layout.simple_spinner_dropdown_item, cities);
+                                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    citySpinner.setAdapter(adapter);
 
                                 }
 
@@ -212,6 +218,25 @@ public class InfoSettingFragment extends Fragment {
 
                     }
                 });
+    }
+
+    private void selectGovernorateName(final int governorate_id) {
+        governoratesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (governorate_id == position){
+                        String name = String.valueOf(parent.getAdapter().getItem(position));
+                        verbose("governorate name: " + name);
+
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override

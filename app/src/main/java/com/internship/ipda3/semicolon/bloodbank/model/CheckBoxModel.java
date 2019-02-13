@@ -11,6 +11,9 @@ public class CheckBoxModel {
         this.isChecked = isChecked;
     }
 
+    public CheckBoxModel() {
+    }
+
     public boolean isChecked() {
         return isChecked;
     }

@@ -17,6 +17,7 @@
     <string name="last_donate_data">أخر تاريخ التبرع</string>
     <string name="city">المدينة</string>
     <string name="state">المحافظة</string>
+    <string name="default_notification_channel_id">1</string>
     <string name="repeat_password_hint">تأكيد كلمة المرور</string>
     <string name="register">تسجيل</string>
     <string name="forget_pass">نسيت كلمة المرور</string>

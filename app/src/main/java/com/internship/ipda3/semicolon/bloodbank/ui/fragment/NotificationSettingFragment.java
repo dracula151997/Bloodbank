@@ -13,6 +13,7 @@ import com.internship.ipda3.semicolon.bloodbank.R;
 import com.internship.ipda3.semicolon.bloodbank.adapter.NotificationSettingsAdapter;
 import com.internship.ipda3.semicolon.bloodbank.model.general.governorates.GavernoratesDatum;
 import com.internship.ipda3.semicolon.bloodbank.model.general.governorates.Governorates;
+import com.internship.ipda3.semicolon.bloodbank.model.notification.setting.NotificationSetting;
 import com.internship.ipda3.semicolon.bloodbank.rest.ApiEndPoint;
 
 import java.util.ArrayList;
@@ -26,9 +27,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.internship.ipda3.semicolon.bloodbank.Constant.SharedPreferenceKeys.UserKeys.API_TOKEN;
+import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.showToast;
 import static com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient.getClient;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.error;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
+import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.LoadStringData;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,9 +45,10 @@ public class NotificationSettingFragment extends Fragment {
     Unbinder unbinder;
     @BindView(R.id.blood_type_recycler)
     RecyclerView bloodTypeRecycler;
-
-
+    String apiToken;
+    NotificationSettingsAdapter bloodTypeAdapter, governorateAdapter;
     private ApiEndPoint mEndPoint;
+
 
     public NotificationSettingFragment() {
         // Required empty public constructor
@@ -59,6 +64,9 @@ public class NotificationSettingFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         setupGavernorateRecycler();
         setupBloodTypeRecycler();
+
+        apiToken = LoadStringData(getActivity(), API_TOKEN);
+
 
         mEndPoint = getClient().create(ApiEndPoint.class);
 
@@ -83,9 +91,9 @@ public class NotificationSettingFragment extends Fragment {
         bloodTypeList.add("O+");
         bloodTypeList.add("O-");
 
-        RecyclerView.Adapter adapter = new NotificationSettingsAdapter(bloodTypeList, getContext());
+        bloodTypeAdapter = new NotificationSettingsAdapter(bloodTypeList, getContext(), 1);
+        bloodTypeRecycler.setAdapter(bloodTypeAdapter);
 
-        bloodTypeRecycler.setAdapter(new NotificationSettingsAdapter(bloodTypeList, getContext()));
 
     }
 
@@ -106,7 +114,11 @@ public class NotificationSettingFragment extends Fragment {
 
                                 list.add(gavernorateName);
                             }
-                            gavernorateRecycler.setAdapter(new NotificationSettingsAdapter(list, getContext()));
+
+                            governorateAdapter = new NotificationSettingsAdapter(list, getContext(), 2);
+                            gavernorateRecycler.setAdapter(governorateAdapter);
+
+
                         } else {
                             error("onResponse: getGovernorates: " + msg);
                         }
@@ -134,6 +146,30 @@ public class NotificationSettingFragment extends Fragment {
 
     @OnClick(R.id.save_settings_button)
     public void onViewClicked() {
+        Object[] bloodArray = bloodTypeAdapter.getBloodArray();
+        Object[] governorateArray = governorateAdapter.getGovernorateArray();
+
+        mEndPoint.notificationSettings(apiToken, bloodArray, governorateArray)
+                .enqueue(new Callback<NotificationSetting>() {
+                    @Override
+                    public void onResponse(Call<NotificationSetting> call, Response<NotificationSetting> response) {
+                        if (response.code() == 200) {
+                            long status = response.body().getStatus();
+                            if (status == 1) {
+                                showToast(getContext(), "response msg: " + response.body().getMsg());
+                            }else{
+                                showToast(getContext(), "response msg: " + response.body().getMsg());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<NotificationSetting> call, Throwable t) {
+                        error("onFailure: response error: " + t.getMessage());
+
+                    }
+                });
+
 
     }
 }

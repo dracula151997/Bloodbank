@@ -2,29 +2,22 @@ package com.internship.ipda3.semicolon.bloodbank.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.bumptech.glide.Glide;
 import com.internship.ipda3.semicolon.bloodbank.R;
-import com.internship.ipda3.semicolon.bloodbank.model.posts.post.Posts;
-import com.internship.ipda3.semicolon.bloodbank.model.posts.post.PostsData;
 import com.internship.ipda3.semicolon.bloodbank.model.posts.post.PostsDatum;
 import com.internship.ipda3.semicolon.bloodbank.model.posts.toggle.FavoritePostToggle;
 import com.internship.ipda3.semicolon.bloodbank.rest.ApiEndPoint;
 import com.internship.ipda3.semicolon.bloodbank.ui.activity.PostDetailsActivity;
-import com.internship.ipda3.semicolon.bloodbank.ui.fragment.PostDetailFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +34,6 @@ import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.showT
 import static com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient.getClient;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.error;
 import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
-import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.readToggleButtonState;
-import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferenceUtil.saveToggleButtonState;
 import static com.internship.ipda3.semicolon.bloodbank.util.SharedPreferencesManger.LoadStringData;
 
 public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder> {
@@ -114,8 +105,9 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
         holder.favoriteButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                long id = postsList.getId();
                 if (isChecked) {
-                    endPoint.postToggleFavourite(postId, apiToken)
+                    endPoint.postToggleFavourite(id, apiToken)
                             .enqueue(new Callback<FavoritePostToggle>() {
                                 @Override
                                 public void onResponse(Call<FavoritePostToggle> call, Response<FavoritePostToggle> response) {
@@ -136,8 +128,8 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
 
                                 }
                             });
-
                 }
+
 
             }
         });

@@ -1,6 +1,7 @@
 package com.internship.ipda3.semicolon.bloodbank.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 
@@ -14,7 +15,7 @@ public class SharedPreferencesManger {
     public static void setSharedPreferences(Activity activity) {
         if (sharedPreferences == null) {
             sharedPreferences = activity.getSharedPreferences(
-                    "kanaria", activity.MODE_PRIVATE);
+                    "kanaria", Context.MODE_PRIVATE);
 
         }
     }

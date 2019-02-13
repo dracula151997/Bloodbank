@@ -1,23 +1,14 @@
 package com.internship.ipda3.semicolon.bloodbank.ui.activity;
 
-import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -27,9 +18,6 @@ import com.internship.ipda3.semicolon.bloodbank.R;
 import com.internship.ipda3.semicolon.bloodbank.model.donation.request.CreateRequest;
 import com.internship.ipda3.semicolon.bloodbank.rest.ApiEndPoint;
 import com.internship.ipda3.semicolon.bloodbank.ui.fragment.CreateAccountFragment;
-import com.internship.ipda3.semicolon.bloodbank.util.UserLocationListener;
-import com.internship.ipda3.semicolon.bloodbank.util.ValidationUtil;
-import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +26,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.getAddressFromCoordinates;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.isNetworkAvailable;
 import static com.internship.ipda3.semicolon.bloodbank.helper.HelperMethod.showToast;
 import static com.internship.ipda3.semicolon.bloodbank.rest.RetrofitClient.getClient;

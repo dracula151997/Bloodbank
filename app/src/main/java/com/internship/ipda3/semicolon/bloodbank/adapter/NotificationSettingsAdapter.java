@@ -10,7 +10,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.internship.ipda3.semicolon.bloodbank.R;
-import com.internship.ipda3.semicolon.bloodbank.model.CheckBoxModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +17,27 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.internship.ipda3.semicolon.bloodbank.util.LogUtil.verbose;
-
 public class NotificationSettingsAdapter extends
         RecyclerView.Adapter<NotificationSettingsAdapter.ViewHolder> {
 
 
     private List<String> dataList = new ArrayList<>();
     private Context context;
+    private int recyclerType;
 
-    private List<CheckBoxModel> bloodTypesSetting = new ArrayList<>();
 
-    public NotificationSettingsAdapter(List<String> dataList, Context context) {
+    //String list for saving blood type text.
+    private List<String> bloodTypeNotification = new ArrayList<>();
+    //Integer list for saving governorate position.
+    private List<Integer> governorateNotification = new ArrayList<>();
+
+
+    public NotificationSettingsAdapter(List<String> dataList, Context context, int recyclerType) {
         this.dataList = dataList;
         this.context = context;
+        this.recyclerType = recyclerType;
         notifyDataSetChanged();
+
     }
 
 
@@ -48,21 +53,29 @@ public class NotificationSettingsAdapter extends
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         String data = dataList.get(position);
 
-        viewHolder.checkBox.setText(data);
+        setData(viewHolder, data);
+        setAction(viewHolder, position, data);
 
 
+    }
+
+    private void setAction(final ViewHolder viewHolder, final int position, final String data) {
         viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    bloodTypesSetting.add(new CheckBoxModel(dataList.get(position), position, isChecked));
-                    verbose("check box list: " + bloodTypesSetting.toString());
-
-
+                if (recyclerType == 1) {
+                    String checkText = buttonView.getText().toString();
+                    bloodTypeNotification.add(checkText);
+                } else {
+                    governorateNotification.add((position + 1));
+                }
 
             }
         });
+    }
 
-
+    private void setData(ViewHolder viewHolder, String data) {
+        viewHolder.checkBox.setText(data);
 
     }
 
@@ -75,6 +88,13 @@ public class NotificationSettingsAdapter extends
         return dataList.size();
     }
 
+    public Object[] getBloodArray() {
+        return bloodTypeNotification.toArray();
+    }
+
+    public Object[] getGovernorateArray() {
+        return governorateNotification.toArray();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.gavernorate_check_box)
@@ -86,9 +106,5 @@ public class NotificationSettingsAdapter extends
         }
 
 
-    }
-
-    public List<CheckBoxModel> getList(){
-        return bloodTypesSetting;
     }
 }
