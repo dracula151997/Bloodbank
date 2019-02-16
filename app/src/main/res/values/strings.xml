@@ -148,5 +148,8 @@
     <string name="hospital_address_text">عنوان  المستشفى:</string>
     <string name="no_internet">No internet connection.</string>
     <string name="added_to_favorite">تم الإضافة بالمفضلة بنجاح</string>
+    <string name="notification_admin_channel_name">admin_name</string>
+    <string name="notification_channel_name">channel_name</string>
+    <string name="notification_channel_description">channel_description</string>
 
 </resources>

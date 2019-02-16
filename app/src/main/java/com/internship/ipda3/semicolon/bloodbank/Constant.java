@@ -17,6 +17,7 @@ public class Constant {
             public static final String DONATION_LAST_DATE = "donation_last_date";
             public static final String BLOOD_TYPE = "blood_type";
             public static final String REMEMBER_ME = "remember_me";
+            public static final String NOTIFICATION_TOKEN = "notification_token";
 
         }
 

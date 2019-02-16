@@ -71,6 +71,8 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
         getDonationDetails(donationId);
 
 
+
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.googleMap);
         if (mapFragment != null) {
@@ -81,6 +83,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     }
 
     private void getDonationDetails(String donationId) {
+
         endPoint.getDonationDetails(apiToken, donationId)
                 .enqueue(new Callback<DonationDetails>() {
                     @Override
